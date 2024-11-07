@@ -381,7 +381,7 @@ verificar_dns_base() {
 questoes_variaveis_base() {
   # ESTABLECER CORREO ELECTRÓNICO
   banner
-  printf "${WHITE} >> Introduce tu mejor correo electrónico: \n"
+  printf "${WHITE} >> Introduce correo electrónico: \n"
   echo
   read -p "> " email_deploy
   echo
@@ -411,7 +411,7 @@ questoes_variaveis_base() {
   echo
   # CONFIGURAR EL TÍTULO DE LA APLICACIÓN EN EL NAVEGADOR
   banner
-  printf "${WHITE} >> Ingrese el título de la solicitud (espacio permitido): \n"
+  printf "${WHITE} >> Ingrese el nombre de la aplicacion (espacio permitido): \n"
   echo
   read -p "> " nome_titulo
   echo
