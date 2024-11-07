@@ -69,8 +69,8 @@ carregar_variaveis() {
   if [ -f $ARQUIVO_VARIAVEIS ]; then
     source $ARQUIVO_VARIAVEIS
   else
-    empresa="multi100"
-    nome_titulo="Multi100"
+    empresa="CRMWHATSAPP"
+    nome_titulo="CRMWHATSAPP"
   fi
 }
 
@@ -1095,7 +1095,7 @@ JWT_REFRESH_SECRET=${jwt_refresh_secret}
 MASTER_KEY=${senha_master}
 
 PERFEX_URL=${subdominio_perfex}
-PERFEX_MODULE=Multi100
+PERFEX_MODULE=CRMWHATSAPP
 VERIFY_TOKEN=whaticket
 FACEBOOK_APP_ID=${facebook_app_id}
 FACEBOOK_APP_SECRET=${facebook_app_secret}
