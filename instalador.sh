@@ -373,7 +373,7 @@ verificar_dns_base() {
   fi
 
   echo
-  printf "${WHITE} >> Continuo...\n"
+  printf "${WHITE} >> Continuar...\n"
   sleep 2
   echo
 }
@@ -381,7 +381,7 @@ verificar_dns_base() {
 questoes_variaveis_base() {
   # ESTABLECER CORREO ELECTRÓNICO
   banner
-  printf "${WHITE} >> Introduce correo electrónico: \n"
+  printf "${WHITE} >> Introduce un correo electrónico valido para SSL: \n"
   echo
   read -p "> " email_deploy
   echo
@@ -393,7 +393,7 @@ questoes_variaveis_base() {
   echo
   # ESTABLECER CONTRASEÑA BASE
   banner
-  printf "${WHITE} >> Ingrese la contraseña para el usuario de Implementación, Redis y Base de datos ${RED}IMPORTANTE${WHITE}: No utilices caracteres especiales.\n"
+  printf "${WHITE} >> Ingrese la contraseña para el usuario deploy, Redis y Base de datos ${RED}IMPORTANTE${WHITE}: No utilices caracteres especiales.\n"
   echo
   read -p "> " senha_deploy
   echo
@@ -472,7 +472,7 @@ define_proxy_base() {
 # Define los puertos backend y frontend
 define_portas_base() {
   banner
-  printf "${WHITE} >> Usar puertos predeterminados para Backend (8080) y Frontend (3000) ? (S/N): ${WHITE}\n"
+  printf "${WHITE} >> Usar puertos predeterminados para Backend (8080) y Frontend (3000) ? (S/N) si seran puertos diferentes ingrese N: ${WHITE}\n"
   echo
   read -p "> " use_default_ports
   use_default_ports=$(echo "${use_default_ports}" | tr '[:upper:]' '[:lower:]')
@@ -493,7 +493,7 @@ define_portas_base() {
       if ! lsof -i:${backend_port} &>/dev/null; then
         break
       else
-        printf "${RED} >> la puerta ${backend_port} ya está en uso. Por favor elige otro.${WHITE}\n"
+        printf "${RED} >> El puerto ${backend_port} ya está en uso. Por favor elige otro.${WHITE}\n"
         echo
       fi
     done
@@ -506,7 +506,7 @@ define_portas_base() {
       if ! lsof -i:${frontend_port} &>/dev/null; then
         break
       else
-        printf "${RED} >> la puerta ${frontend_port} ya está en uso. Por favor elige otro.${WHITE}\n"
+        printf "${RED} >> El puerto ${frontend_port} ya está en uso. Por favor elige otro.${WHITE}\n"
         echo
       fi
     done
@@ -584,14 +584,23 @@ cria_deploy_base() {
 config_timezone_base() {
   banner
   printf "${WHITE} >> Configurando Timezone...\n"
-  echo
+  echo "Escoge tu zona horaria aquí: https://www.zeitverschiebung.net/es"
+  echo "Por ejemplo: America/Mexico_City"
+  read -p "Introduce la zona horaria deseada (o presiona Enter para usar America/Mexico_City): " timezone
+
+  # Si el usuario no introduce nada, usar valor por defecto
+  timezone=${timezone:-America/Mexico_City}
+
   {
     sudo su - root <<EOF
-  timedatectl set-timezone America/Sao_Paulo
+  timedatectl set-timezone $timezone
 EOF
     sleep 2
   } || trata_erro "config_timezone_base"
+  
+  echo "Zona horaria configurada a $timezone."
 }
+
 
 # Configurar firewall
 config_firewall_base() {
