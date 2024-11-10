@@ -148,8 +148,8 @@ menu() {
     printf "${WHITE} Seleccione la opción deseada a continuación: \n"
     echo
     printf "   [${BLUE}1${WHITE}] Instalar ${nome_titulo}\n"
-    printf "   [${BLUE}2${WHITE}] Para actualizar ${nome_titulo}\n"
-    printf "   [${BLUE}0${WHITE}] para salir\n"
+    printf "   [${BLUE}2${WHITE}] Actualizar ${nome_titulo}\n"
+    printf "   [${BLUE}0${WHITE}] Salir\n"
     echo
     read -p "> " option
     case "${option}" in
@@ -296,13 +296,13 @@ sair() {
 questoes_dns_base() {
   # URL de fondo de las tiendas
   banner
-  printf "${WHITE} >> Ingrese la URL del servidor Backend Ejemplo https://api.dominio.com: \n"
+  printf "${WHITE} >> Ingrese la URL del dominio Backend Ejemplo https://api.dominio.com: \n"
   echo
   read -p "> " subdominio_backend
   echo
   # URL frontal de las tiendas
   banner
-  printf "${WHITE} >> Ingrese la URL de la interfaz Frontend Ejemplo https://app.dominio.com: \n"
+  printf "${WHITE} >> Ingrese la URL del dominio Frontend Ejemplo https://app.dominio.com: \n"
   echo
   read -p "> " subdominio_frontend
   echo
@@ -345,7 +345,7 @@ verificar_dns_base() {
     echo "Verifique las entradas DNS para los siguientes subdominios: ${subdominios_incorretos}"
     echo
     while true; do
-      echo "¿Quieres continuar de todos modos, si esta seguro que sus sub dominios y dominios si estan apuntando correctamente puede continuar.?"
+      echo "¿Quieres continuar de todos modos, si esta seguro que sus sub dominios y dominios si estan apuntando correctamente puede continuar, es posible que solo sus subdominios apunten al servidor pero por decision propia el dominio principal no apunta a la IP y por eso no se detectan correctamente.?"
       echo "1) Sí"
       echo "2) No"
       read -p "Elige una opción: " escolha
@@ -794,7 +794,8 @@ instala_nginx_base() {
     apt install -y nginx
     rm /etc/nginx/sites-enabled/default
 EOF
-#!/bin/bash
+
+  sleep 2
 
 echo "¿Es esta la primera instalación o ya existe una instalación previa?"
 echo "1) Sí, es la primera instalación"
@@ -811,9 +812,6 @@ EOF
 else
     echo "Configuración de Nginx omitida para instalación adicional."
 fi
-
-# Resto del script de instalación
-
 
     sleep 2
 
