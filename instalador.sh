@@ -794,12 +794,26 @@ instala_nginx_base() {
     apt install -y nginx
     rm /etc/nginx/sites-enabled/default
 EOF
+#!/bin/bash
 
+echo "¿Es esta la primera instalación o ya existe una instalación previa?"
+echo "1) Sí, es la primera instalación"
+echo "2) No, esta es una instalación adicional"
+read -p "Seleccione una opción (1 o 2): " instalacion
+
+if [ "$instalacion" -eq 1 ]; then
+    # Si es la primera instalación, ejecuta el siguiente bloque de configuración
     sleep 2
-
     sudo su - root <<EOF
 echo 'client_max_body_size 100M;' > /etc/nginx/conf.d/${empresa}.conf
 EOF
+    echo "Configuración de Nginx aplicada."
+else
+    echo "Configuración de Nginx omitida para instalación adicional."
+fi
+
+# Resto del script de instalación
+
 
     sleep 2
 
