@@ -1312,14 +1312,14 @@ EOF
     backend_hostname=$(echo "${subdominio_backend/https:\/\//}")
     sudo su - root <<EOF
 cat > /etc/nginx/sites-available/${empresa}-backend << 'END'
-upstream backend {
+upstream ${empresa}backend {
         server 127.0.0.1:${backend_port};
         keepalive 32;
     }
 server {
   server_name ${backend_hostname};
   location / {
-    proxy_pass http://backend;
+    proxy_pass http://${empresa}backend;
     proxy_http_version 1.1;
     proxy_set_header Upgrade \$http_upgrade;
     proxy_set_header Connection 'upgrade';
