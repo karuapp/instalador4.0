@@ -1468,8 +1468,8 @@ fim_instalacao_base() {
   printf "   ${WHITE}Banckend: ${BLUE}${subdominio_backend}\n"
   printf "   ${WHITE}Frontend: ${BLUE}${subdominio_frontend}\n"
   echo
-  printf "   ${WHITE}Usuário ${BLUE}admin@admin.com\n"
-  printf "   ${WHITE}Senha   ${BLUE}123456\n"
+  printf "   ${WHITE}Usuario ${BLUE}admin@admin.com\n"
+  printf "   ${WHITE}password   ${BLUE}123456\n"
   echo
   printf "${WHITE}>> Presione cualquier tecla para regresar al menú principal o CTRL+C para finalizar este script\n"
   read -p ""
